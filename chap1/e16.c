@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-#define MAXLINE 40
+#define MAXLINE 1000
 
 int myGetline(char line[], int maxline);
 void copy(char to[], char from []);
@@ -34,7 +33,7 @@ int myGetline(char s[], int lim) {
         }
     }
     if (c == '\n'){
-        s[j] == c;
+        s[j] = c;
         ++j;
         ++i;
     }   

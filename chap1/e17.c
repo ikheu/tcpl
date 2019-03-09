@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-#define MAXLINE 10
+#define MAXLINE 1000
 #define LONGLINE 80
 
 int myGetline(char line[], int maxline);
@@ -19,13 +18,20 @@ int main() {
 }
 
 int myGetline(char s[], int lim) {
-    int c, i;
-    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
-        s[i] = c;
+    int c, i, j;
+    j = 0;
+    // \n 终止本行，并且要记入 \n
+    for (i = 0;(c = getchar()) != EOF && c != '\n'; ++i) {
+        if (i < lim - 2){
+            s[j] = c;
+            ++j;
+        }
+    }
     if (c == '\n'){
-        s[i] == c;
+        s[j] = c;
+        ++j;
         ++i;
     }   
-    s[i] = '\0';
+    s[j] = '\0';
     return i;
 }

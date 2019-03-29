@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "calc.h"
 #define MAXOP 100
 
@@ -30,7 +31,17 @@ int main() {
                 else
                     printf("error: zero division\n");
                 break;
+            case '%':
+                op2 = pop();
+                if (op2 != 0) {
+                    push(fmod(pop(), op2));
+                }
+                else {
+                    printf("error: zero division\n");
+                }
+                break;
             case '\n':
+                printf("result:\n");
                 printf("\t%.8g\n", pop());
                 break;
             default:

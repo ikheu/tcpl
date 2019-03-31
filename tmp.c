@@ -3,6 +3,6 @@
 
 int main() {
     // printf("%d\n", -10 % 0);
-    printf("%f\n", fmod(1.1, 2));
+    printf("%d\n", '\0');
     return 0;
 }

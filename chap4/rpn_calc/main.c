@@ -12,7 +12,7 @@ int main() {
 
     for (i = 0; i < 26; i++)
         variable[i] = 0.0;
-    while ((type = getop(s)) != EOF) {
+    while ((type = getop_v2(s)) != EOF) {
         switch (type) {
             case NUMBER:
                 push(atof(s));

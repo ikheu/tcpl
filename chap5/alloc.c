@@ -1,8 +1,17 @@
-#include <stdio.h>
+#define ALLOCSIZE 10000
 
-int main() {
-    char *p = "hello";
-    printf("%c\n", *(p + 1));
-    printf("%s\n", p);
-    return 0;
+static char allocbuf[ALLOCSIZE];
+static char *allocp = allocbuf;
+
+char *alloc(int n) {
+    if (allocbuf + ALLOCSIZE - allocp >= n) {
+        allocp += n;
+        return allocp - n;
+    } else 
+        return 0;
+}
+
+char afree(char *p) {
+    if (p >= allocbuf && p < allocbuf + ALLOCSIZE)
+        allocp = p;
 }

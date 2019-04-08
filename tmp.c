@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include <math.h>
+#include <string.h>
 
 int main() {
-    // printf("%d\n", -10 % 0);
-    printf("%d\n", '\0');
+    char *s1 = "hello";
+    char *s2 = "www";
+    printf("%d\n", strcmp(s1, s2));
     return 0;
 }

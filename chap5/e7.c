@@ -22,26 +22,52 @@ int main() {
 }
 
 #define MAXLEN 1000
+#define MAXSTORE 10000
+
 int myGetline(char s[], int lim);
-char *alloc(int);
+char char_store[MAXSTORE];
+char *store_top = char_store;
 
 int readlines(char *lineptr[], int maxlines) {
     int nlines, len;
-    char *p, line[MAXLEN];
+    char line[MAXLEN];
 
     nlines = 0;
     while ((len = myGetline(line, MAXLEN)) > 0) {
-        if (nlines >= maxlines || (p = alloc(len)) == NULL)
+        if (nlines >= maxlines || store_top + MAXSTORE - char_store < len)
             return -1;
         else {
             line[len - 1] = '\0';
-            strcpy(p, line);
-            lineptr[nlines++] = p;
+            strcpy(store_top, line);
+            lineptr[nlines++] = store_top;
+            store_top += len;
         }
     }
     return nlines;
 
 }
+
+// #define MAXLEN 1000
+// int myGetline(char s[], int lim);
+// char *alloc(int);
+
+// int readlines(char *lineptr[], int maxlines) {
+//     int nlines, len;
+//     char *p, line[MAXLEN];
+
+//     nlines = 0;
+//     while ((len = myGetline(line, MAXLEN)) > 0) {
+//         if (nlines >= maxlines || (p = alloc(len)) == NULL)
+//             return -1;
+//         else {
+//             line[len - 1] = '\0';
+//             strcpy(p, line);
+//             lineptr[nlines++] = p;
+//         }
+//     }
+//     return nlines;
+
+// }
 
 void writelines(char *lineptr[], int nlines) {
     int i;
